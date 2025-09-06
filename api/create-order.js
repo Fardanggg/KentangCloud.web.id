@@ -42,9 +42,9 @@ export default async (req, res) => {
         }
         
         // Mengambil kredensial dari Environment Variables
-        const API_KEY = process.env.TRIPAY_API_KEY;
-        const PRIVATE_KEY = process.env.TRIPAY_PRIVATE_KEY;
-        const MERCHANT_CODE = process.env.TRIPAY_MERCHANT_CODE;
+        const API_KEY = process.env.DEV-6KSNvK0ZGOZXrjVt6G7RMUONkKXFFGskJ58kOVTp;
+        const PRIVATE_KEY = process.env.QQwmr-aQ7ON-KS9UD-Omseu-taPYV;
+        const MERCHANT_CODE = process.env.T39691;
 
         if (!API_KEY || !PRIVATE_KEY || !MERCHANT_CODE) {
             return res.status(500).json({ success: false, message: 'Tripay credentials are not set.' });
@@ -95,3 +95,4 @@ export default async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal server error.' });
     }
 };
+
