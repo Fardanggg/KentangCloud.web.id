@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 // Konfigurasi Vercel: Matikan body parser bawaan Vercel
 // agar formidable dapat mengelola data multipart/form-data.
-export const config = {
+const config = {
     api: {
         bodyParser: false,
     },
@@ -13,7 +13,7 @@ export const config = {
 // URL endpoint API Tripay Sandbox yang benar
 const TRIPAY_API_URL = 'https://tripay-sandbox.co.id/api/transaction/create';
 
-export default async (req, res) => {
+const handler = async (req, res) => {
     // Pastikan request yang masuk adalah POST
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, message: 'Method Not Allowed' });
@@ -86,10 +86,8 @@ export default async (req, res) => {
             },
             body: JSON.stringify(payload)
         });
-
         // Mengambil respons dari Tripay, coba log sebelum parse
         const tripayResponseText = await tripayResponse.text();
-
         // Log respons mentah dari Tripay ke konsol Vercel
         console.log('Respons mentah dari Tripay:', tripayResponseText);
 
@@ -108,4 +106,9 @@ export default async (req, res) => {
         console.error('API Error:', e);
         res.status(500).json({ success: false, message: 'Internal server error.' });
     }
+};
+
+module.exports = {
+  config,
+  handler
 };
