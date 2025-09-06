@@ -1,0 +1,13 @@
+{
+  "name": "kentangcloud",
+  "version": "1.0.0",
+  "description": "A static web hosting platform using serverless functions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "formidable": "^3.5.1",
+    "node-fetch": "^2.6.7"
+  }
+}
