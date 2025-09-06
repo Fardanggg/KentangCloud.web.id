@@ -87,7 +87,14 @@ export default async (req, res) => {
             body: JSON.stringify(payload)
         });
 
-        const tripayResult = await tripayResponse.json();
+        // Mengambil respons dari Tripay, coba log sebelum parse
+        const tripayResponseText = await tripayResponse.text();
+
+        // Log respons mentah dari Tripay ke konsol Vercel
+        console.log('Respons mentah dari Tripay:', tripayResponseText);
+
+        // Coba parse respons ke JSON
+        const tripayResult = JSON.parse(tripayResponseText);
 
         // Memberikan respons berdasarkan hasil dari Tripay
         if (tripayResult.success) {
@@ -97,7 +104,7 @@ export default async (req, res) => {
         }
 
     } catch (e) {
-        // Menangani kesalahan yang tidak terduga
+        // Menangani kesalahan yang tidak terduga, log pesan error
         console.error('API Error:', e);
         res.status(500).json({ success: false, message: 'Internal server error.' });
     }
